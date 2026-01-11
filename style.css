@@ -202,7 +202,7 @@ body {
 }
 
 .ghost-text {
-  font-size: 96px;
+  font-size: 200px;
   line-height: 1;
   animation: ghostFloat 1.8s ease-in-out infinite;
 }
