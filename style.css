@@ -217,6 +217,13 @@ body {
   }
 }
 
+
+#startOver {
+  position: relative;       
+  z-index: 2001;
+  width: 200px;             
+  margin-top: 40px;         /* <-- new line to move it lower */
+}
 .ghosted-label {
   margin-top: 10px;
   text-align: center;
