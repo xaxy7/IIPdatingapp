@@ -18,6 +18,7 @@ const toastArea = document.getElementById("toastArea");
 const topBar = document.getElementById("topBar");
 const nameEl = document.getElementById("currentName");
 const loveEl = document.getElementById("loveMeter");
+const loveBarEl = document.getElementById("loveMeter");
 
 const controlsPanel = document.getElementById("controlsPanel");
 const ghostedPanel = document.getElementById("ghostedPanel");
@@ -74,7 +75,7 @@ function onScan(text) {
 
   currentPerson = name;
   nameEl.textContent = `${name}, ${age} y.o.`;
-  showToast(`Age: ${age}`);
+  // showToast(`Age: ${age}`);
 
   topBar.classList.remove("hidden");
   controlsPanel.classList.remove("hidden");
@@ -84,6 +85,7 @@ function onScan(text) {
 function changeLove(v) {
   love = Math.max(0, Math.min(100, love + v));
   loveEl.textContent = love;
+  loveBarEl.value = love;
 }
 
 // ---------- GHOST ----------
