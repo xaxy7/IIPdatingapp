@@ -198,6 +198,18 @@ body {
   font-size: 28px;
   font-weight: 900;
 }
+
+#ghostedPanel {
+  position: absolute;       /* needed for z-index */
+  inset: 0;                 /* cover full screen (optional) */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* center vertically */
+  align-items: center;      /* center horizontally */
+  z-index: 1001;            /* above ghost overlay */
+}
+
+
 .hidden {
   display: none !important;
 }
