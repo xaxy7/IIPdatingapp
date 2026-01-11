@@ -10,7 +10,7 @@
 <body>
 <div class="app">
 
-  <!-- START -->
+  <!-- START SCREEN -->
   <section id="screen-start" class="screen screen--active screen--blue-bg">
     <div class="screen-content screen-content--centered">
       <h1 style="font-size:42px">👻 Ghost Dating</h1>
@@ -20,10 +20,10 @@
     </div>
   </section>
 
-  <!-- GAME -->
+  <!-- GAME SCREEN -->
   <section id="screen-game" class="screen screen--blue-bg">
 
-    <!-- TOP BAR (HIDDEN UNTIL SCAN) -->
+    <!-- TOP BAR (hidden until scan) -->
     <header id="topBar" class="top-bar hidden">
       <div class="pill">❤️ <span id="loveMeter">50</span>%</div>
       <div class="pill" id="currentName"></div>
@@ -31,16 +31,28 @@
 
     <div id="toastArea" class="toast-area"></div>
 
+    <!-- CAMERA AREA -->
     <div class="camera-area">
       <div id="qr-reader" class="camera-view"></div>
 
-      <!-- GHOST OVERLAY -->
-      <div id="ghostOverlay" class="ghost-overlay hidden">
-        <div class="ghost-text">👻</div>
+      <!-- GHOST CONTAINER -->
+      <div id="ghostContainer" class="ghost-container hidden">
+        <!-- Big Ghost Emoji Overlay -->
+        <div id="ghostOverlay" class="ghost-overlay">
+          <div class="ghost-text">👻</div>
+        </div>
+
+        <!-- Ghosted Panel with Start Over Button -->
+        <div id="ghostedPanel" class="panel ghosted-panel">
+          <div class="ghosted-label">👻 GHOSTED</div>
+          <button id="startOver" class="primary-button primary-button--wide">
+            Start Over
+          </button>
+        </div>
       </div>
     </div>
 
-    <!-- CONTROLS (HIDDEN UNTIL SCAN) -->
+    <!-- CONTROLS (hidden until scan) -->
     <div id="controlsPanel" class="panel hidden">
       <div class="love">
         <button id="loveDown" class="primary-button">⬇</button>
@@ -48,14 +60,6 @@
       </div>
       <button id="ghostBtn" class="primary-button primary-button--wide">
         👻 Ghost
-      </button>
-    </div>
-
-    <!-- GHOSTED PANEL (ONLY AFTER GHOST) -->
-    <div id="ghostedPanel" class="panel hidden">
-      <div class="ghosted-label">👻 GHOSTED</div>
-      <button id="startOver" class="primary-button primary-button--wide">
-        Start Over
       </button>
     </div>
 
