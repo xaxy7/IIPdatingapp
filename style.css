@@ -221,16 +221,17 @@ body {
   inset: 0;                 /* covers full screen */
   display: flex;
   flex-direction: column;
-  justify-content: center;  /* vertical center */
-  align-items: center;      /* horizontal center */
-  z-index: 2000;            /* above ghost overlay */
-  pointer-events: all;      /* allow clicks to pass */
+  justify-content: flex-end;  /* push content to bottom */
+  align-items: center;        /* horizontal center */
+  padding-bottom: 50px;       /* distance from bottom of screen */
+  z-index: 2000;              /* above ghost overlay */
+  pointer-events: all;        /* allow clicks */
 }
 
 #startOver {
-  margin-top: 50px;         /* move it lower */
   width: 200px;
 }
+
 .ghosted-label {
   margin-top: 10px;
   text-align: center;
