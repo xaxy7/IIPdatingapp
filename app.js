@@ -30,7 +30,9 @@ const startOverBtn = document.getElementById("startOver");
 
 // ---------- SCREEN ----------
 function showScreen(name) {
-  Object.values(screens).forEach(el => el.classList.remove("screen--active"));
+  Object.values(screens).forEach(el =>
+    el.classList.remove("screen--active")
+  );
   screens[name].classList.add("screen--active");
 }
 
@@ -49,12 +51,12 @@ function initScanner() {
 function startScanner() {
   if (scannerRunning) return;
   initScanner();
+
   html5QrCode.start(
     { facingMode: "environment" },
     { fps: 10, qrbox: 250 },
     onScan
-  ).then(() => scannerRunning = true)
-    .catch(err => alert("Camera error"));
+  ).then(() => scannerRunning = true);
 }
 
 function stopScanner() {
@@ -90,6 +92,7 @@ function ghost() {
   ghostOverlay.classList.remove("hidden");
   controlsPanel.classList.add("hidden");
   topBar.classList.add("hidden");
+  ghostedPanel.classList.remove("hidden");
 }
 
 // ---------- RESET ----------
@@ -100,6 +103,7 @@ function resetGame() {
   currentPerson = null;
 
   ghostOverlay.classList.add("hidden");
+  ghostedPanel.classList.add("hidden");
   controlsPanel.classList.add("hidden");
   topBar.classList.add("hidden");
 
