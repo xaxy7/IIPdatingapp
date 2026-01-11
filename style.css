@@ -200,20 +200,22 @@ body {
 }
 
 #ghostedPanel {
-  position: absolute;       /* absolutely positioned relative to screen-game */
-  inset: 0;                 /* cover full screen */
+  position: absolute;       
+  inset: 0;                 
   display: flex;
   flex-direction: column;
-  justify-content: center;  /* center vertically */
-  align-items: center;      /* center horizontally */
-  z-index: 2000;            /* above ghost overlay and all panels */
+  justify-content: center;  
+  align-items: center;      
+  z-index: 2000;            
 }
 
 #startOver {
-  position: relative;       /* inside panel */
+  position: relative;       
   z-index: 2001;
-  width: 200px;             /* optional width */
+  width: 200px;             
+  margin-top: 40px;         /* <-- new line to move it lower */
 }
+
 
 
 .hidden {
