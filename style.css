@@ -228,7 +228,7 @@ display: flex;
 }
 
 .ghost-text {
-  font-size: 95vw;
+  font-size: 250px;
   line-height: 1;
   animation: ghostFloat 1.8s ease-in-out infinite;
 }
