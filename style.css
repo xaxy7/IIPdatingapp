@@ -1,89 +1,176 @@
-body {
-  background:#111;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  font-family:sans-serif;
+:root {
+  --white: #ffffff;
+  --gray-text: rgba(255,255,255,0.72);
+  --radius-large: 18px;
+  --radius-pill: 999px;
+  --shadow-soft: 0 10px 28px rgba(0, 0, 0, 0.35);
+  --app-max-width: 430px;
+
+  --hud-bg: rgba(255, 255, 255, 0.12);
+  --hud-blur: blur(14px);
+  --hud-border: rgba(255,255,255,0.22);
 }
 
-.phone {
-  width:375px;
-  height:700px;
-  background:black;
-  border-radius:30px;
-  overflow:hidden;
-  position:relative;
-  box-shadow:0 0 30px hotpink;
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  background: #000;
+  color: var(--white);
+  height: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.app {
+  position: relative;
+  width: 100%;
+  max-width: var(--app-max-width);
+  height: 100vh;
+  overflow: hidden;
 }
 
 .screen {
+  position: absolute;
+  inset: 0;
   display: none;
-  width: 100%;
-  height: 100%;
-  color: white;
-  text-align: center;
+  padding: 22px 18px 26px;
 }
 
 .screen--active {
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
-#screen-home {
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  gap:30px;
+.screen--blue-bg {
+  background: radial-gradient(circle at top, #3c4df0 0%, #0d0f2e 60%, #000 100%);
 }
 
-#screen-home button {
-  padding:20px;
-  font-size:20px;
-  background:hotpink;
-  border:none;
-  border-radius:20px;
+/* Top bar */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 68px;
+  padding-top: 14px;
 }
 
-#reader {
-  width:100%;
-  height:100%;
+/* HUD pills */
+.pill {
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  background: var(--hud-bg);
+  backdrop-filter: var(--hud-blur);
+  border: 1px solid var(--hud-border);
+  color: var(--white);
+  font-weight: 900;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.overlay {
-  position:absolute;
-  bottom:0;
-  width:100%;
-  background:rgba(0,0,0,0.7);
-  padding:20px;
+/* Toast area */
+.toast-area {
+  min-height: 54px;
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toast {
+  max-width: 92%;
+  text-align: center;
+  padding: 14px 22px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.78);
+  border: 1px solid rgba(255,255,255,0.16);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+/* CAMERA */
+.camera-area {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 10px;
+}
+
+.camera-view {
+  width: min(92vw, 380px);
+  aspect-ratio: 1/1;
+  border-radius: 22px;
+  overflow: hidden;
+  background: rgba(0,0,0,0.25);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.55);
+}
+
+#qr-reader video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  border-radius: 22px;
+}
+
+/* Start screen */
+.screen-content--centered {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Buttons */
+.primary-button {
+  border: none;
+  border-radius: 14px;
+  padding: 16px 40px;
+  font-size: 16px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: linear-gradient(90deg, #4c63ff, #7b3fff);
+  color: var(--white);
+  box-shadow: 0 10px 28px rgba(76, 99, 255, 0.45);
+  transition: transform 0.15s ease;
+}
+
+.primary-button--wide { width: 100%; }
+.primary-button:active { transform: translateY(1px); }
+
+/* Ghost / love controls panel */
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
 }
 
 .love {
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  font-size:24px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 24px;
 }
 
 .love button {
-  font-size:30px;
+  font-size: 28px;
 }
 
-.ghost {
-  margin-top:10px;
-  width:100%;
-  padding:15px;
-  background:white;
-  border:none;
-  border-radius:15px;
-}
-
-#ghostScreen {
-  position:absolute;
-  inset:0;
-  background:black;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  font-size:50px;
-}
+/* Hide/Show helper */
+.hidden { display: none !important; }
