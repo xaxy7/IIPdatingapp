@@ -95,13 +95,11 @@ body {
 }
 
 /* Camera area */
-.camera-area {
-  flex: 1;
-  display: flex;
-  justify-content: flex-start;   /* push camera to top */
-  align-items: center;           /* keep it horizontally centered */
-  padding-top: 40px;             /* distance from top of screen */
-  gap: 12px;                     /* optional spacing for extra padding */
+.camera-area { 
+  flex: 1; 
+display: flex; 
+  justify-content: center; 
+  align-items: center; 
 }
 
 
