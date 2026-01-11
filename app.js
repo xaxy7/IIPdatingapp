@@ -82,8 +82,9 @@ function onScan(text) {
 // ---------- GAME ----------
 function changeLove(v) {
   love = Math.max(0, Math.min(100, love + v));
-  loveEl.textContent = love;
+  loveEl.style.width = love + "%"; // update the bar
 }
+
 
 // ---------- GHOST ----------
 function ghost() {
