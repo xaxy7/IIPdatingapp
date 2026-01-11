@@ -216,11 +216,21 @@ body {
 }
 
 
+
+#ghostedPanel {
+  position: absolute;
+  inset: 0;                 /* covers full screen */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* vertical center */
+  align-items: center;      /* horizontal center */
+  z-index: 2000;            /* above ghost overlay */
+  pointer-events: all;      /* allow clicks to pass */
+}
+
 #startOver {
-  position: relative;       
-  z-index: 2001;
-  width: 200px;             
-  margin-top: 40px;         /* <-- new line to move it lower */
+  margin-top: 50px;         /* move it lower */
+  width: 200px;
 }
 .ghosted-label {
   margin-top: 10px;
