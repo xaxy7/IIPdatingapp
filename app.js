@@ -98,7 +98,7 @@ function ghost() {
 // ---------- RESET ----------
 function resetGame() {
   love = 50;
-  loveEl.textContent = love;
+  loveEl.style.width = love + "%";   // update the progress bar
   nameEl.textContent = "";
   currentPerson = null;
 
@@ -109,6 +109,7 @@ function resetGame() {
 
   startScanner();
 }
+
 
 // ---------- EVENTS ----------
 startButton.addEventListener("click", () => {
