@@ -172,5 +172,32 @@ body {
   font-size: 28px;
 }
 
-/* Hide/Show helper */
-.hidden { display: none !important; }
+.ghost-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.ghost-text {
+  font-size: 120px;
+  animation: float 1.6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.ghosted-label {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.hidden {
+  display: none !important;
+}

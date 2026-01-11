@@ -10,21 +10,29 @@ let currentPerson = null;
 const screens = {
   start: document.getElementById("screen-start"),
   game: document.getElementById("screen-game"),
-  results: document.getElementById("screen-results-blue"),
 };
 
 const startButton = document.getElementById("startButton");
-const playAgainBlue = document.getElementById("playAgainBlue");
 const toastArea = document.getElementById("toastArea");
 
+const topBar = document.getElementById("topBar");
 const nameEl = document.getElementById("currentName");
 const loveEl = document.getElementById("loveMeter");
-const resultsTitle = document.getElementById("resultsTitle");
-const resultsCaption = document.getElementById("resultsCaption");
 
-// ---------- SCREEN SYSTEM ----------
+const controlsPanel = document.getElementById("controlsPanel");
+const ghostedPanel = document.getElementById("ghostedPanel");
+const ghostOverlay = document.getElementById("ghostOverlay");
+
+const loveUpBtn = document.getElementById("loveUp");
+const loveDownBtn = document.getElementById("loveDown");
+const ghostBtn = document.getElementById("ghostBtn");
+const startOverBtn = document.getElementById("startOver");
+
+// ---------- SCREEN ----------
 function showScreen(name) {
-  Object.values(screens).forEach(el => el.classList.remove("screen--active"));
+  Object.values(screens).forEach(el =>
+    el.classList.remove("screen--active")
+  );
   screens[name].classList.add("screen--active");
 }
 
@@ -62,11 +70,14 @@ function onScan(text) {
   if (now < scanLockUntil) return;
   scanLockUntil = now + 800;
 
-  const [name, game] = text.split("|");
+  const [name, age] = text.split("|");
 
   currentPerson = name;
-  nameEl.textContent = name;
-  showToast(`🎮 Likes ${game}`);
+  nameEl.textContent = `${name}, ${age} y.o.`;
+  showToast(`Age: ${age}`);
+
+  topBar.classList.remove("hidden");
+  controlsPanel.classList.remove("hidden");
 }
 
 // ---------- GAME ----------
@@ -75,27 +86,37 @@ function changeLove(v) {
   loveEl.textContent = love;
 }
 
+// ---------- GHOST ----------
 function ghost() {
   stopScanner();
-  resultsTitle.textContent = "👻 GHOSTED";
-  resultsCaption.textContent = currentPerson
-    ? `You ghosted ${currentPerson}`
-    : "No one scanned";
-  showScreen("results");
+  ghostOverlay.classList.remove("hidden");
+  controlsPanel.classList.add("hidden");
+  topBar.classList.add("hidden");
+  ghostedPanel.classList.remove("hidden");
+}
+
+// ---------- RESET ----------
+function resetGame() {
+  love = 50;
+  loveEl.textContent = love;
+  nameEl.textContent = "";
+  currentPerson = null;
+
+  ghostOverlay.classList.add("hidden");
+  ghostedPanel.classList.add("hidden");
+  controlsPanel.classList.add("hidden");
+  topBar.classList.add("hidden");
+
+  startScanner();
 }
 
 // ---------- EVENTS ----------
 startButton.addEventListener("click", () => {
-  love = 50;
-  loveEl.textContent = love;
-  nameEl.textContent = "Scan someone";
-  currentPerson = null;
-
   showScreen("game");
-  startScanner();
+  resetGame();
 });
 
-playAgainBlue.addEventListener("click", () => {
-  stopScanner();
-  showScreen("start");
-});
+loveUpBtn.addEventListener("click", () => changeLove(10));
+loveDownBtn.addEventListener("click", () => changeLove(-10));
+ghostBtn.addEventListener("click", ghost);
+startOverBtn.addEventListener("click", resetGame);

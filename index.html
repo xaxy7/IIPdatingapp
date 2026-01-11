@@ -4,57 +4,62 @@
 <meta charset="UTF-8">
 <title>Ghost Dating</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 <div class="app">
 
-<!-- START -->
-<section id="screen-start" class="screen screen--active screen--blue-bg">
-  <div class="screen-content screen-content--centered">
-    <h1 style="font-size:42px">👻 Ghost Dating</h1>
-    <button id="startButton" class="primary-button primary-button--wide">
-      Start Dating
-    </button>
-  </div>
-</section>
-
-<!-- CAMERA -->
-<section id="screen-game" class="screen screen--blue-bg">
-  <header class="top-bar top-bar--game">
-    <div class="pill">❤️ <span id="loveMeter">50</span>%</div>
-    <div class="pill" id="currentName">Scan someone</div>
-  </header>
-
-  <div id="toastArea" class="toast-area"></div>
-
-  <div class="camera-area">
-    <div id="qr-reader" class="camera-view"></div>
-  </div>
-
-  <div class="panel" style="margin-top:10px">
-    <div class="love" style="display:flex;justify-content:center;gap:20px">
-      <button onclick="changeLove(-10)" class="primary-button">⬇</button>
-      <button onclick="changeLove(10)" class="primary-button">⬆</button>
+  <!-- START -->
+  <section id="screen-start" class="screen screen--active screen--blue-bg">
+    <div class="screen-content screen-content--centered">
+      <h1 style="font-size:42px">👻 Ghost Dating</h1>
+      <button id="startButton" class="primary-button primary-button--wide">
+        Start Dating
+      </button>
     </div>
-    <button onclick="ghost()" class="primary-button primary-button--wide">
-      👻 Ghost
-    </button>
-  </div>
-</section>
+  </section>
 
-<!-- RESULT -->
-<section id="screen-results-blue" class="screen screen--blue-bg">
-  <div class="screen-content screen-content--centered">
-    <h1 id="resultsTitle">GHOSTED</h1>
-    <p id="resultsCaption"></p>
-    <button id="playAgainBlue" class="primary-button primary-button--wide">
-      Start over
-    </button>
-  </div>
-</section>
+  <!-- GAME -->
+  <section id="screen-game" class="screen screen--blue-bg">
 
+    <!-- TOP BAR (HIDDEN UNTIL SCAN) -->
+    <header id="topBar" class="top-bar hidden">
+      <div class="pill">❤️ <span id="loveMeter">50</span>%</div>
+      <div class="pill" id="currentName"></div>
+    </header>
+
+    <div id="toastArea" class="toast-area"></div>
+
+    <div class="camera-area">
+      <div id="qr-reader" class="camera-view"></div>
+
+      <!-- GHOST OVERLAY -->
+      <div id="ghostOverlay" class="ghost-overlay hidden">
+        <div class="ghost-text">👻</div>
+      </div>
+    </div>
+
+    <!-- CONTROLS (HIDDEN UNTIL SCAN) -->
+    <div id="controlsPanel" class="panel hidden">
+      <div class="love">
+        <button id="loveDown" class="primary-button">⬇</button>
+        <button id="loveUp" class="primary-button">⬆</button>
+      </div>
+      <button id="ghostBtn" class="primary-button primary-button--wide">
+        👻 Ghost
+      </button>
+    </div>
+
+    <!-- GHOSTED PANEL (ONLY AFTER GHOST) -->
+    <div id="ghostedPanel" class="panel hidden">
+      <div class="ghosted-label">👻 GHOSTED</div>
+      <button id="startOver" class="primary-button primary-button--wide">
+        Start Over
+      </button>
+    </div>
+
+  </section>
 </div>
 
 <script src="https://unpkg.com/html5-qrcode"></script>
