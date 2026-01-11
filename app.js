@@ -70,11 +70,10 @@ function onScan(text) {
   if (now < scanLockUntil) return;
   scanLockUntil = now + 800;
 
-  const [name, age] = text.split(".");
 
-  currentPerson = name;
-  nameEl.textContent = `Name: ${name}, Age:${age} y.o.`;
-  showToast(`Age: ${age}`);
+  currentPerson = text;
+  nameEl.textContent = `${text}`;
+  showToast(`Age: ${text}`);
 
   topBar.classList.remove("hidden");
   controlsPanel.classList.remove("hidden");
