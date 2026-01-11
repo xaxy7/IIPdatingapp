@@ -15,12 +15,12 @@ const screens = {
 const startButton = document.getElementById("startButton");
 const toastArea = document.getElementById("toastArea");
 
+const topBar = document.getElementById("topBar");
 const nameEl = document.getElementById("currentName");
 const loveEl = document.getElementById("loveMeter");
 
 const controlsPanel = document.getElementById("controlsPanel");
 const ghostedPanel = document.getElementById("ghostedPanel");
-
 const ghostOverlay = document.getElementById("ghostOverlay");
 
 const loveUpBtn = document.getElementById("loveUp");
@@ -30,9 +30,7 @@ const startOverBtn = document.getElementById("startOver");
 
 // ---------- SCREEN ----------
 function showScreen(name) {
-  Object.values(screens).forEach(el =>
-    el.classList.remove("screen--active")
-  );
+  Object.values(screens).forEach(el => el.classList.remove("screen--active"));
   screens[name].classList.add("screen--active");
 }
 
@@ -51,13 +49,12 @@ function initScanner() {
 function startScanner() {
   if (scannerRunning) return;
   initScanner();
-
   html5QrCode.start(
     { facingMode: "environment" },
     { fps: 10, qrbox: 250 },
     onScan
   ).then(() => scannerRunning = true)
-   .catch(err => alert("Camera error"));
+    .catch(err => alert("Camera error"));
 }
 
 function stopScanner() {
@@ -77,6 +74,7 @@ function onScan(text) {
   nameEl.textContent = `${name}, ${age} y.o.`;
   showToast(`Age: ${age}`);
 
+  topBar.classList.remove("hidden");
   controlsPanel.classList.remove("hidden");
 }
 
@@ -91,19 +89,19 @@ function ghost() {
   stopScanner();
   ghostOverlay.classList.remove("hidden");
   controlsPanel.classList.add("hidden");
-  ghostedPanel.classList.remove("hidden");
+  topBar.classList.add("hidden");
 }
 
 // ---------- RESET ----------
 function resetGame() {
   love = 50;
   loveEl.textContent = love;
-  nameEl.textContent = "Scan someone";
+  nameEl.textContent = "";
   currentPerson = null;
 
   ghostOverlay.classList.add("hidden");
-  ghostedPanel.classList.add("hidden");
   controlsPanel.classList.add("hidden");
+  topBar.classList.add("hidden");
 
   startScanner();
 }
