@@ -73,6 +73,29 @@ body {
   gap: 6px;
 }
 
+.love-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.progress-container {
+  flex: 1;                 /* fills remaining space */
+  height: 12px;             /* bar height */
+  background: rgba(138, 170, 255, 0.2); /* light background */
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 50%;               /* initial width = 50% */
+  background: linear-gradient(120deg, #ff7a3c, #ff3c83);
+  border-radius: 999px;
+  transition: width 0.2s ease;
+}
+
+
 /* Toast area */
 .toast-area {
 
