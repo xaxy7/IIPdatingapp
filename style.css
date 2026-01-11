@@ -187,6 +187,12 @@ body {
   50% { transform: translateY(-12px); }
 }
 
+#startOver {
+  position: absolute;   /* allows z-index to work */
+  z-index: 1000;        /* on top of everything else */
+}
+
+
 .ghosted-label {
   text-align: center;
   font-size: 28px;
