@@ -23,10 +23,10 @@
   <!-- GAME SCREEN -->
   <section id="screen-game" class="screen screen--blue-bg">
 
-    <!-- TOP BAR -->
+    <!-- TOP BAR (hidden until scan) -->
     <header id="topBar" class="top-bar hidden">
       <div class="pill">❤️ <span id="loveMeter">50</span>%</div>
-      <div class="pill" id="currentName">Scan someone</div>
+      <div class="pill" id="currentName"></div>
     </header>
 
     <div id="toastArea" class="toast-area"></div>
@@ -35,17 +35,24 @@
     <div class="camera-area">
       <div id="qr-reader" class="camera-view"></div>
 
-      <!-- GHOST OVERLAY -->
-      <div id="ghostOverlay" class="ghost-overlay hidden">
-        <div class="ghost-text">👻</div>
-        <!-- START OVER BUTTON ON TOP -->
-        <button id="startOver" class="primary-button primary-button--wide start-over-button">
-          Start Over
-        </button>
+      <!-- GHOST CONTAINER -->
+      <div id="ghostContainer" class="ghost-container hidden">
+        <!-- Big Ghost Emoji Overlay -->
+        <div id="ghostOverlay" class="ghost-overlay">
+          <div class="ghost-text">👻</div>
+        </div>
+
+        <!-- Ghosted Panel with Start Over Button -->
+        <div id="ghostedPanel" class="panel ghosted-panel">
+          <div class="ghosted-label">👻 GHOSTED</div>
+          <button id="startOver" class="primary-button primary-button--wide">
+            Start Over
+          </button>
+        </div>
       </div>
     </div>
 
-    <!-- CONTROLS PANEL -->
+    <!-- CONTROLS (hidden until scan) -->
     <div id="controlsPanel" class="panel hidden">
       <div class="love">
         <button id="loveDown" class="primary-button">⬇</button>
@@ -57,7 +64,6 @@
     </div>
 
   </section>
-
 </div>
 
 <script src="https://unpkg.com/html5-qrcode"></script>
