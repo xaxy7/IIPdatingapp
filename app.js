@@ -15,20 +15,18 @@ const screens = {
 const startButton = document.getElementById("startButton");
 const toastArea = document.getElementById("toastArea");
 
-const topBar = document.getElementById("topBar");
 const nameEl = document.getElementById("currentName");
 const loveEl = document.getElementById("loveMeter");
 
 const controlsPanel = document.getElementById("controlsPanel");
 const ghostedPanel = document.getElementById("ghostedPanel");
+
 const ghostOverlay = document.getElementById("ghostOverlay");
-const ghostContainer = document.getElementById("ghostContainer"); // <-- ADD THIS
 
 const loveUpBtn = document.getElementById("loveUp");
 const loveDownBtn = document.getElementById("loveDown");
 const ghostBtn = document.getElementById("ghostBtn");
 const startOverBtn = document.getElementById("startOver");
-
 
 // ---------- SCREEN ----------
 function showScreen(name) {
@@ -58,7 +56,8 @@ function startScanner() {
     { facingMode: "environment" },
     { fps: 10, qrbox: 250 },
     onScan
-  ).then(() => scannerRunning = true);
+  ).then(() => scannerRunning = true)
+   .catch(err => alert("Camera error"));
 }
 
 function stopScanner() {
@@ -75,10 +74,9 @@ function onScan(text) {
   const [name, age] = text.split("|");
 
   currentPerson = name;
-  //nameEl.textContent = `${name}, ${age} y.o.`;
+  nameEl.textContent = `${name}, ${age} y.o.`;
   showToast(`Age: ${age}`);
 
-  topBar.classList.remove("hidden");
   controlsPanel.classList.remove("hidden");
 }
 
@@ -88,26 +86,27 @@ function changeLove(v) {
   loveEl.textContent = love;
 }
 
+// ---------- GHOST ----------
 function ghost() {
   stopScanner();
-  ghostContainer.classList.remove("hidden");
+  ghostOverlay.classList.remove("hidden");
   controlsPanel.classList.add("hidden");
-  topBar.classList.add("hidden");
+  ghostedPanel.classList.remove("hidden");
 }
 
+// ---------- RESET ----------
 function resetGame() {
   love = 50;
   loveEl.textContent = love;
-  nameEl.textContent = "";
+  nameEl.textContent = "Scan someone";
   currentPerson = null;
 
-  ghostContainer.classList.add("hidden");
+  ghostOverlay.classList.add("hidden");
+  ghostedPanel.classList.add("hidden");
   controlsPanel.classList.add("hidden");
-  topBar.classList.add("hidden");
 
   startScanner();
 }
-
 
 // ---------- EVENTS ----------
 startButton.addEventListener("click", () => {
