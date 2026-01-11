@@ -18,16 +18,17 @@ const toastArea = document.getElementById("toastArea");
 const topBar = document.getElementById("topBar");
 const nameEl = document.getElementById("currentName");
 const loveEl = document.getElementById("loveMeter");
-const loveBarEl = document.getElementById("loveMeter");
 
 const controlsPanel = document.getElementById("controlsPanel");
 const ghostedPanel = document.getElementById("ghostedPanel");
 const ghostOverlay = document.getElementById("ghostOverlay");
+const ghostContainer = document.getElementById("ghostContainer"); // <-- ADD THIS
 
 const loveUpBtn = document.getElementById("loveUp");
 const loveDownBtn = document.getElementById("loveDown");
 const ghostBtn = document.getElementById("ghostBtn");
 const startOverBtn = document.getElementById("startOver");
+
 
 // ---------- SCREEN ----------
 function showScreen(name) {
@@ -74,8 +75,8 @@ function onScan(text) {
   const [name, age] = text.split("|");
 
   currentPerson = name;
-  nameEl.textContent = `${name}, ${age} y.o.`;
-  // showToast(`Age: ${age}`);
+  //nameEl.textContent = `${name}, ${age} y.o.`;
+  showToast(`Age: ${age}`);
 
   topBar.classList.remove("hidden");
   controlsPanel.classList.remove("hidden");
@@ -85,32 +86,28 @@ function onScan(text) {
 function changeLove(v) {
   love = Math.max(0, Math.min(100, love + v));
   loveEl.textContent = love;
-  loveBarEl.value = love;
 }
 
-// ---------- GHOST ----------
 function ghost() {
   stopScanner();
-  ghostOverlay.classList.remove("hidden");
+  ghostContainer.classList.remove("hidden");
   controlsPanel.classList.add("hidden");
   topBar.classList.add("hidden");
-  ghostedPanel.classList.remove("hidden");
 }
 
-// ---------- RESET ----------
 function resetGame() {
   love = 50;
   loveEl.textContent = love;
   nameEl.textContent = "";
   currentPerson = null;
 
-  ghostOverlay.classList.add("hidden");
-  ghostedPanel.classList.add("hidden");
+  ghostContainer.classList.add("hidden");
   controlsPanel.classList.add("hidden");
   topBar.classList.add("hidden");
 
   startScanner();
 }
+
 
 // ---------- EVENTS ----------
 startButton.addEventListener("click", () => {
