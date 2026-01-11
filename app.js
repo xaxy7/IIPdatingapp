@@ -2,13 +2,20 @@ let love = 50
 let html5QrCode = null
 let scannerRunning = false
 
-function startApp() {
-  document.getElementById("home").classList.remove("screen--active")
-  document.getElementById("camera").classList.add("screen--active")
-
-  setTimeout(startScanner, 200)
+const screens = {
+  home: document.getElementById("screen-home"),
+  camera: document.getElementById("screen-camera")
 }
 
+function showScreen(name) {
+  Object.values(screens).forEach(el => el.classList.remove("screen--active"))
+  screens[name].classList.add("screen--active")
+}
+
+function startApp() {
+  showScreen("camera")
+  setTimeout(startScanner, 200)
+}
 
 function initScanner() {
   if (html5QrCode) return
@@ -19,9 +26,17 @@ function startScanner() {
   if (scannerRunning) return
   initScanner()
 
+  const config = {
+    fps: 10,
+    qrbox: (vw, vh) => {
+      const size = Math.floor(Math.min(vw, vh) * 0.7)
+      return { width: size, height: size }
+    }
+  }
+
   html5QrCode.start(
     { facingMode: "environment" },
-    { fps: 10, qrbox: 250 },
+    config,
     qrSuccess
   ).then(() => {
     scannerRunning = true
@@ -35,7 +50,6 @@ function qrSuccess(text) {
   const parts = text.split("|")
   document.getElementById("name").innerText = parts[0] || "Unknown"
   document.getElementById("game").innerText = parts[1] ? "Game: " + parts[1] : ""
-
   document.getElementById("ghostScreen").style.display = "none"
 }
 
