@@ -82,9 +82,8 @@ function onScan(text) {
 // ---------- GAME ----------
 function changeLove(v) {
   love = Math.max(0, Math.min(100, love + v));
-  loveEl.style.width = love + "%"; // update the bar
+  loveEl.textContent = love;
 }
-
 
 // ---------- GHOST ----------
 function ghost() {
@@ -98,7 +97,7 @@ function ghost() {
 // ---------- RESET ----------
 function resetGame() {
   love = 50;
-  loveEl.style.width = love + "%";   // update the progress bar
+  loveEl.textContent = love;
   nameEl.textContent = "";
   currentPerson = null;
 
@@ -109,7 +108,6 @@ function resetGame() {
 
   startScanner();
 }
-
 
 // ---------- EVENTS ----------
 startButton.addEventListener("click", () => {
