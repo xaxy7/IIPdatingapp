@@ -1,0 +1,88 @@
+body {
+  background:#111;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  font-family:sans-serif;
+}
+
+.phone {
+  width:375px;
+  height:700px;
+  background:black;
+  border-radius:30px;
+  overflow:hidden;
+  position:relative;
+  box-shadow:0 0 30px hotpink;
+}
+
+.screen {
+  width:100%;
+  height:100%;
+  display:none;
+  color:white;
+  text-align:center;
+}
+
+.screen.active {
+  display:block;
+}
+
+#home {
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:30px;
+}
+
+#home button {
+  padding:20px;
+  font-size:20px;
+  background:hotpink;
+  border:none;
+  border-radius:20px;
+}
+
+#reader {
+  width:100%;
+  height:100%;
+}
+
+.overlay {
+  position:absolute;
+  bottom:0;
+  width:100%;
+  background:rgba(0,0,0,0.7);
+  padding:20px;
+}
+
+.love {
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  font-size:24px;
+}
+
+.love button {
+  font-size:30px;
+}
+
+.ghost {
+  margin-top:10px;
+  width:100%;
+  padding:15px;
+  background:white;
+  border:none;
+  border-radius:15px;
+}
+
+#ghostScreen {
+  position:absolute;
+  inset:0;
+  background:black;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  font-size:50px;
+}

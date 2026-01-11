@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ghost Dating</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- QR Scanner -->
+  <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+<body>
+
+<div class="phone">
+
+  <!-- HOME -->
+  <div id="home" class="screen active">
+    <h1>👻 Ghost Dating</h1>
+    <button onclick="startApp()">Start Dating</button>
+  </div>
+
+  <!-- CAMERA -->
+  <div id="camera" class="screen">
+    <div id="reader"></div>
+
+    <div class="overlay">
+      <h2 id="name">Scan someone</h2>
+      <p id="game"></p>
+
+      <div class="love">
+        <button onclick="changeLove(-10)">⬇</button>
+        <span id="love">50%</span>
+        <button onclick="changeLove(10)">⬆</button>
+      </div>
+
+      <button class="ghost" onclick="ghost()">👻 Ghost</button>
+    </div>
+
+    <div id="ghostScreen"></div>
+  </div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
