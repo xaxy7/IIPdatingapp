@@ -101,7 +101,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 14px;
 }
 
 .camera-view {
@@ -166,7 +165,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: 12px;
 }
 
 /* Love / rating control */
