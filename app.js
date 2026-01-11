@@ -3,12 +3,12 @@ let html5QrCode = null
 let scannerRunning = false
 
 function startApp() {
-  document.getElementById("home").classList.remove("active")
-  document.getElementById("camera").classList.add("active")
+  document.getElementById("home").classList.remove("screen--active")
+  document.getElementById("camera").classList.add("screen--active")
 
-  // wait for CSS to apply so camera div is visible
   setTimeout(startScanner, 200)
 }
+
 
 function initScanner() {
   if (html5QrCode) return
